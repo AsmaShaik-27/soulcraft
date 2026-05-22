@@ -3,6 +3,10 @@ import Navbar from "../components/home/Navbar";
 import FeaturedArtists from "../components/home/FeaturedArtists";
 import FeaturedCollections from "../components/home/FeaturedCollections";
 import CommissionProcess from "../components/home/CommissionProcess";
+import FeaturedProducts from "../components/home/FesturedProducts";
+import WhyChooseUs from "../components/home/WhyChooseUs";
+import Testimonials from "../components/home/Testimonials";
+import Footer from "../layouts/Footer";
 
 
 function Home() {
@@ -12,6 +16,10 @@ function Home() {
       <Hero />
       <FeaturedCollections />
       <CommissionProcess />
+      <FeaturedProducts />
+      <WhyChooseUs />
+      <Testimonials />
+      <Footer />
       
     </>
   );
