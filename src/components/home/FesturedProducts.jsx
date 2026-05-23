@@ -1,87 +1,170 @@
-import ProductCard from "./ProductCard";
+import { Heart, Star } from "lucide-react";
 
-const featuredProducts = [
+const products = [
   {
     id: 1,
-    name: "Mandala Wall Art",
-    category: "Mandala",
+    title: "Mandala Wall Art",
+    artist: "by Aanya",
     price: "₹1,499",
-    image:
-      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1200&auto=format&fit=crop",
-    description: "Hand-painted mandala canvas artwork.",
     rating: 4.9,
+    image:
+      "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1200&auto=format&fit=crop",
+    customizable: true,
   },
   {
     id: 2,
-    name: "Resin Ocean Tray",
-    category: "Resin Art",
-    price: "₹2,199",
-    image:
-      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?q=80&w=1200&auto=format&fit=crop",
-    description: "Ocean-inspired handcrafted resin tray.",
+    title: "Resin Name Plate",
+    artist: "by Kavya",
+    price: "₹999",
     rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1200&auto=format&fit=crop",
+    customizable: true,
   },
   {
     id: 3,
-    name: "Crochet Flower Bouquet",
-    category: "Crochet",
-    price: "₹899",
-    image:
-      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop",
-    description: "Everlasting handmade crochet flowers.",
+    title: "Handmade Jewelry",
+    artist: "by Meera",
+    price: "₹799",
     rating: 4.7,
+    image:
+      "https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1200&auto=format&fit=crop",
+    customizable: false,
   },
   {
     id: 4,
-    name: "Clay Miniature Set",
-    category: "Clay Craft",
+    title: "Crochet Teddy",
+    artist: "by Diya",
     price: "₹1,299",
-    image:
-      "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1200&auto=format&fit=crop",
-    description: "Cute handcrafted clay miniatures.",
     rating: 4.9,
+    image:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop",
+    customizable: true,
   },
 ];
 
-const FeaturedProducts = () => {
+export default function FeaturedProducts() {
   return (
-    <section className="bg-[#fdf8f3] py-20 px-6 md:px-12 lg:px-20">
+    <section className="w-full bg-[#F9F6F1] py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-          
+        {/* Heading */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
           <div>
-            <p className="text-sm uppercase tracking-[4px] text-[#b08968] font-medium mb-3">
-              Handpicked Collection
+            <p
+              className="text-sm uppercase tracking-[4px] text-[#8B5E3C] mb-3"
+              style={{ fontFamily: "Inter" }}
+            >
+              Handmade Picks
             </p>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-[#3d2c29] leading-tight mb-4">
-              Featured Handmade
-              <br />
-              Creations
+            <h2
+              className="text-4xl md:text-5xl text-[#1A1816]"
+              style={{ fontFamily: "Playfair Display" }}
+            >
+              Featured Products
             </h2>
-
-            <p className="text-[#6f5c57] max-w-2xl text-lg leading-relaxed">
-              Explore our carefully curated handmade products crafted with
-              creativity, passion, and artistic detail.
-            </p>
           </div>
 
-          <button className="border border-[#b08968] text-[#7f5539] px-6 py-3 rounded-full hover:bg-[#b08968] hover:text-white transition duration-300 w-fit">
+          <button
+            className="mt-6 md:mt-0 border border-[#1A1816]
+            px-6 py-3 rounded-full text-sm hover:bg-[#1A1816]
+            hover:text-white transition duration-300"
+            style={{ fontFamily: "Inter" }}
+          >
             View All Products
           </button>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        {/* Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="group bg-white rounded-[28px] overflow-hidden
+              transition duration-500 hover:-translate-y-2
+              hover:shadow-2xl"
+            >
+              {/* Image */}
+              <div className="relative overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-[320px] object-cover
+                  transition duration-700 group-hover:scale-110"
+                />
+
+                {/* Wishlist */}
+                <button
+                  className="absolute top-4 right-4 bg-white/90
+                  p-2 rounded-full backdrop-blur-md
+                  hover:scale-110 transition"
+                >
+                  <Heart size={18} className="text-[#1A1816]" />
+                </button>
+
+                {/* Badge */}
+                {product.customizable && (
+                  <div
+                    className="absolute bottom-4 left-4 bg-[#1A1816]
+                    text-white text-xs px-3 py-1 rounded-full"
+                    style={{ fontFamily: "Inter" }}
+                  >
+                    Customizable
+                  </div>
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="p-5">
+                <div className="flex items-center gap-1 mb-2">
+                  <Star
+                    size={16}
+                    className="fill-yellow-400 text-yellow-400"
+                  />
+                  <span
+                    className="text-sm text-[#4B4B4B]"
+                    style={{ fontFamily: "Inter" }}
+                  >
+                    {product.rating}
+                  </span>
+                </div>
+
+                <h3
+                  className="text-xl text-[#1A1816] mb-1"
+                  style={{ fontFamily: "Playfair Display" }}
+                >
+                  {product.title}
+                </h3>
+
+                <p
+                  className="text-sm text-[#777]"
+                  style={{ fontFamily: "Inter" }}
+                >
+                  {product.artist}
+                </p>
+
+                <div className="mt-4 flex items-center justify-between">
+                  <p
+                    className="text-lg text-[#8B5E3C]"
+                    style={{ fontFamily: "Inter" }}
+                  >
+                    {product.price}
+                  </p>
+
+                  <button
+                    className="text-sm border border-[#1A1816]
+                    px-4 py-2 rounded-full hover:bg-[#1A1816]
+                    hover:text-white transition duration-300"
+                    style={{ fontFamily: "Inter" }}
+                  >
+                    View
+                  </button>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default FeaturedProducts;
+}

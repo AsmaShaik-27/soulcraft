@@ -1,138 +1,138 @@
-import { motion } from "framer-motion";
+import {
+  FileText,
+  MessagesSquare,
+  Paintbrush,
+  PackageCheck,
+} from "lucide-react";
 
 const steps = [
+  
   {
-    number: "01",
-    title: "Share Your Vision",
+    id: "01",
+    icon: MessagesSquare,
+    title: "Connect with Artist",
     description:
-      "Describe your idea, inspiration, emotions, or references for the artwork you imagine.",
+      "Discuss style, pricing, customization details, and timelines directly.",
   },
-
   {
-    number: "02",
-    title: "Connect With Artists",
+    id: "02",
+    icon: FileText,
+    title: "Submit Your Idea",
     description:
-      "Collaborate directly with talented creators whose style matches your artistic vision.",
+      "Share your inspiration, references, or describe your dream artwork.",
   },
-
   {
-    number: "03",
-    title: "Crafted With Care",
+    id: "03",
+    icon: Paintbrush,
+    title: "Creation Begins",
     description:
-      "Watch your artwork evolve through sketches, refinements, and handcrafted details.",
+      "Your selected artist carefully crafts your personalized masterpiece.",
   },
-
   {
-    number: "04",
-    title: "Receive Your Artwork",
+    id: "04",
+    icon: PackageCheck,
+    title: "Delivered to You",
     description:
-      "Get a meaningful creation designed uniquely for your story and personal space.",
+      "Receive your handmade creation beautifully packed at your doorstep.",
   },
 ];
 
-function CommissionProcess() {
+export default function CommissionProcess() {
   return (
-    <section className="bg-[#EFE7DD] py-32 px-8 overflow-hidden">
-
+    <section className="w-full bg-white py-24 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-3xl"
-        >
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <p
+            className="uppercase tracking-[4px] text-sm text-[#8B5E3C] mb-4"
+            style={{ fontFamily: "Inter" }}
+          >
+            Custom Creations
+          </p>
 
-        <p
-        className="text-[#8B6B4A] italic text-3xl md:text-4xl leading-relaxed max-w-3xl"
-        style={{ fontFamily: "Cormorant Garamond" }}
-        >
-        Beyond curated collections lies something even more personal.
-        </p>
+          <h2
+            className="text-4xl md:text-5xl text-[#1A1816]
+            leading-tight mb-6"
+            style={{ fontFamily: "Playfair Display" }}
+          >
+            How Custom Orders Work
+          </h2>
 
-        <p
-        className="mt-6 uppercase tracking-[0.25em] text-sm text-[#8B6B4A]"
-        style={{ fontFamily: "Inter" }}
-        >
-        Commissioned Creations
-        </p>
+          <p
+            className="text-[#666] text-base md:text-lg leading-relaxed"
+            style={{ fontFamily: "Inter" }}
+          >
+            A simple and collaborative process to turn your ideas into
+            meaningful handmade creations.
+          </p>
+        </div>
 
-        <h2
-        className="mt-4 text-5xl md:text-6xl text-[#1A1816] leading-tight"
-        style={{
-            fontFamily: "Cormorant Garamond",
-            fontWeight: 600,
-        }}
-        >
-        Crafted Around
-        <br />
-        Your Imagination
-        </h2>
+        {/* Timeline */}
+        <div className="relative">
+          {/* Center Line */}
+          <div
+            className="hidden md:block absolute top-0 left-1/2
+            -translate-x-1/2 w-[2px] h-full bg-[#E8DED2]"
+          />
 
-        </motion.div>
+          <div className="space-y-16">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
 
-        {/* Steps */}
-        <div className="mt-24 grid md:grid-cols-2 gap-x-20 gap-y-20">
-
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.12,
-              }}
-              viewport={{ once: true }}
-              className="group"
-            >
-
-              {/* Number */}
-              <div
-                className="text-[#C8B8A6] text-7xl"
-                style={{
-                  fontFamily: "Cormorant Garamond",
-                  fontWeight: 600,
-                }}
-              >
-                {step.number}
-              </div>
-
-              {/* Divider */}
-              <div className="mt-4 h-[1px] bg-[#D8CCC0] w-full"></div>
-
-              {/* Content */}
-              <div className="mt-8">
-
-                <h3
-                  className="text-4xl text-[#1A1816]
-                  group-hover:translate-x-1
-                  transition duration-500"
-                  style={{
-                    fontFamily: "Cormorant Garamond",
-                    fontWeight: 500,
-                  }}
+              return (
+                <div
+                  key={step.id}
+                  className={`flex flex-col md:flex-row items-center gap-8 ${
+                    index % 2 !== 0 ? "md:flex-row-reverse" : ""
+                  }`}
                 >
-                  {step.title}
-                </h3>
+                  {/* Empty Space */}
+                  <div className="hidden md:block flex-1" />
 
-                <p
-                  className="mt-5 text-[#6B645D] leading-relaxed max-w-md"
-                  style={{ fontFamily: "Inter" }}
-                >
-                  {step.description}
-                </p>
+                  {/* Center Icon */}
+                  <div
+                    className="relative z-10 w-20 h-20 rounded-full
+                    bg-[#1A1816] text-white flex items-center
+                    justify-center shadow-xl shrink-0"
+                  >
+                    <Icon size={30} />
+                  </div>
 
-              </div>
+                  {/* Content */}
+                  <div className="flex-1">
+                    <div
+                      className="bg-[#F8F5F0] p-8 rounded-[30px]
+                      hover:shadow-xl transition duration-500"
+                    >
+                      <p
+                        className="text-sm tracking-[3px]
+                        text-[#8B5E3C] mb-3"
+                        style={{ fontFamily: "Inter" }}
+                      >
+                        STEP {step.id}
+                      </p>
 
-            </motion.div>
-          ))}
+                      <h3
+                        className="text-3xl text-[#1A1816] mb-4"
+                        style={{ fontFamily: "Playfair Display" }}
+                      >
+                        {step.title}
+                      </h3>
+
+                      <p
+                        className="text-[#666] leading-relaxed"
+                        style={{ fontFamily: "Inter" }}
+                      >
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-export default CommissionProcess;

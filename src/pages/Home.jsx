@@ -7,6 +7,7 @@ import FeaturedProducts from "../components/home/FesturedProducts";
 import WhyChooseUs from "../components/home/WhyChooseUs";
 import Testimonials from "../components/home/Testimonials";
 import Footer from "../layouts/Footer";
+import CTASection from "../components/home/CTASection";
 
 
 function Home() {
@@ -15,10 +16,11 @@ function Home() {
       <Navbar />
       <Hero />
       <FeaturedCollections />
-      <CommissionProcess />
       <FeaturedProducts />
+      <CommissionProcess />
       <WhyChooseUs />
       <Testimonials />
+      <CTASection />
       <Footer />
       
     </>
