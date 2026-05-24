@@ -1,11 +1,12 @@
+
 const categories = [
   "All",
+  "painting",
   "Mandala",
-  "Pottery",
-  "Canvas",
-  "Decor",
-  "Woodcraft",
+  "Pencil art",
+  "Crochet",
   "Resin",
+  "Glass Painting"
 ];
 
 const FiltersSidebar = ({
