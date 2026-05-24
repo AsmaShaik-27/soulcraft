@@ -13,8 +13,6 @@ const FiltersSidebar = ({
   setSelectedCategory,
   customizableOnly,
   setCustomizableOnly,
-  searchTerm,
-  setSearchTerm,
 }) => {
   return (
     <div className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm h-fit sticky top-24">
@@ -24,23 +22,6 @@ const FiltersSidebar = ({
       </h2>
 
       <div className="space-y-8">
-
-        {/* Search */}
-        <div>
-          <h3 className="font-medium mb-4">
-            Search
-          </h3>
-
-          <input
-            type="text"
-            placeholder="Search artworks..."
-            value={searchTerm}
-            onChange={(e) =>
-              setSearchTerm(e.target.value)
-            }
-            className="w-full px-4 py-3 rounded-2xl border border-gray-200 outline-none focus:border-black text-sm"
-          />
-        </div>
 
         {/* Categories */}
         <div>

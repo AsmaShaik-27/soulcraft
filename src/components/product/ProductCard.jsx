@@ -1,7 +1,21 @@
-import { Heart, ShoppingCart } from "lucide-react";
+import {
+  Heart,
+  ShoppingCart,
+  Check,
+} from "lucide-react";
+
+import { useState } from "react";
+
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+
+  const [wishlisted, setWishlisted] =
+    useState(false);
+
+  const [addedToCart, setAddedToCart] =
+    useState(false);
+
   return (
     <div className="group bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col">
 
@@ -9,12 +23,26 @@ const ProductCard = ({ product }) => {
       <div className="relative overflow-hidden">
 
         {/* Wishlist */}
-        <button className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-sm hover:scale-110 transition">
-          <Heart size={18} />
+        <button
+          onClick={() =>
+            setWishlisted(!wishlisted)
+          }
+          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-sm hover:scale-110 transition"
+        >
+          <Heart
+            size={18}
+            className={`transition ${
+              wishlisted
+                ? "fill-red-500 text-red-500"
+                : "text-black"
+            }`}
+          />
         </button>
 
         {/* Product Image */}
-        <Link to={`/product/${product.id}`}>
+        <Link
+          to={`/product/${product.id}`}
+        >
           <img
             src={product.image}
             alt={product.title}
@@ -34,7 +62,9 @@ const ProductCard = ({ product }) => {
         </div>
 
         {/* Title */}
-        <Link to={`/product/${product.id}`}>
+        <Link
+          to={`/product/${product.id}`}
+        >
           <h3 className="text-xl font-semibold text-[#1A1816] hover:opacity-80 transition">
             {product.title}
           </h3>
@@ -68,9 +98,29 @@ const ProductCard = ({ product }) => {
           <div className="flex items-center gap-3">
 
             {/* Add To Cart */}
-            <button className="flex-1 border border-[#1A1816] text-[#1A1816] py-3 rounded-full text-sm font-medium hover:bg-[#1A1816] hover:text-white transition flex items-center justify-center gap-2">
-              <ShoppingCart size={16} />
-              Cart
+            <button
+              onClick={() =>
+                setAddedToCart(
+                  !addedToCart
+                )
+              }
+              className={`flex-1 py-3 rounded-full text-sm font-medium transition flex items-center justify-center gap-2 ${
+                addedToCart
+                  ? "bg-green-600 text-white"
+                  : "border border-[#1A1816] text-[#1A1816] hover:bg-[#1A1816] hover:text-white"
+              }`}
+            >
+              {addedToCart ? (
+                <>
+                  <Check size={16} />
+                  Added
+                </>
+              ) : (
+                <>
+                  <ShoppingCart size={16} />
+                  Cart
+                </>
+              )}
             </button>
 
             {/* Buy Now */}
