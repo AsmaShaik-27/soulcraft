@@ -1,42 +1,51 @@
-const products = [1, 2, 3, 4];
+import { Link } from "react-router-dom";
+import { products } from "../../data/products";
 
-const MoreFromArtist = () => {
+const MoreFromArtist = ({ currentProduct }) => {
+  const relatedProducts = products
+    .filter(
+      (item) =>
+        item.artist === currentProduct.artist &&
+        item.id !== currentProduct.id
+    )
+    .slice(0, 4);
+
+  if (relatedProducts.length === 0) return null;
+
   return (
-    <section>
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl font-semibold">More from this Artist</h2>
-
-        <button className="text-[#8b5e3c] hover:underline">
-          View All
-        </button>
+    <section className="mt-20">
+      <div className="mb-8">
+        <p className="text-sm uppercase tracking-[0.35em] text-[#9a7555] mb-3">
+          More from this artist
+        </p>
+        <h2 className="font-serif text-4xl md:text-5xl">
+          Explore Similar Pieces
+        </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((item) => (
-          <div
-            key={item}
-            className="bg-white rounded-3xl overflow-hidden shadow-sm hover:-translate-y-1 transition"
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relatedProducts.map((item) => (
+          <Link
+            to={`/product/${item.id}`}
+            key={item.id}
+            className="group bg-white border border-[#ddd4ca]"
           >
-            <img
-              src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1200"
-              alt="art"
-              className="w-full h-72 object-cover"
-            />
+            <div className="h-72 overflow-hidden bg-[#eee8df]">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+            </div>
 
             <div className="p-5">
-              <h3 className="font-medium text-lg">
-                Earth Mandala
-              </h3>
-
-              <p className="text-neutral-500 text-sm mt-1">
-                by Priya Arts
-              </p>
-
-              <p className="mt-4 font-semibold">
-                ₹2,800
+              <h3 className="font-serif text-2xl mb-1">{item.title}</h3>
+              <p className="text-[#7a7067] mb-3">{item.artist}</p>
+              <p className="font-medium">
+                ₹{item.price.toLocaleString("en-IN")}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
