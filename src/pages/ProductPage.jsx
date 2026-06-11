@@ -3,71 +3,39 @@ import Navbar from "../components/home/Navbar";
 import Footer from "../layouts/Footer";
 import { products } from "../data/products";
 
-import ProductGallery from "../components/productDetails/ProductGallery"; 
+import ProductGallery from "../components/productDetails/ProductGallery";
 import ProductInfo from "../components/productDetails/ProductInfo";
-import ArtistCard from "../components/productDetails/ArtistCard";
-import ArtworkCarousel from "../components/productDetails/ArtworkCarousel";
+import ProductTabs from "../components/productDetails/ProductTabs";
+import ArtworkMiniProfile from "../components/productDetails/ArtistMiniProfile";
+import SimilarArtworks from "../components/productDetails/SimilarArtworks";
 
 const ProductPage = () => {
   const { id } = useParams();
 
-  const product = products.find(
-    (item) => item.id === Number(id)
-  );
-
-  if (!product) {
-    return (
-      <>
-        <Navbar />
-        <div className="pt-40 text-center">
-          <h1 className="text-3xl font-serif">Artwork not found</h1>
-        </div>
-        <Footer />
-      </>
-    );
-  }
-
-  const moreFromArtist = products.filter(
-    (item) =>
-      item.artist === product.artist &&
-      item.id !== product.id
-  );
-
-  const similarArtworks = products.filter(
-    (item) =>
-      item.category === product.category &&
-      item.id !== product.id
-  );
+  const product =
+    products.find((item) => item.id === Number(id)) || products[0];
 
   return (
-    <>
+    <div className="min-h-screen bg-[#f8f5f1] text-[#1A1816]">
       <Navbar />
 
-      <main className="bg-[#f8f5f0] pt-28">
-        <section className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-14 grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-          <ProductGallery product={product} />
-          <ProductInfo product={product} />
+      <main className="pt-28">
+        <section className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_0.95fr] gap-16 items-start">
+            <ProductGallery product={product} />
+            <ProductInfo product={product} />
+          </div>
         </section>
 
-        <ArtistCard product={product} />
+        <ProductTabs product={product} />
 
-        {moreFromArtist.length > 0 && (
-          <ArtworkCarousel
-            title="More From This Artist"
-            products={moreFromArtist}
-          />
-        )}
+        <ArtworkMiniProfile product={product} />
 
-        {similarArtworks.length > 0 && (
-          <ArtworkCarousel
-            title="Similar Artworks"
-            products={similarArtworks}
-          />
-        )}
+        <SimilarArtworks currentProduct={product} />
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 };
 
